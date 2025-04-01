@@ -1,68 +1,73 @@
 #include<stdio.h>
-
 #include<time.h>
 #include<stdlib.h>
 
-void swap(int *i, int *j){
-    int temp = *i;
-    *i = *j;
-    *j = temp;
-}
+void swap(int* a, int* b);
+int partition(int a[], int p, int r);
+void quicksort(int a[], int p, int r);
+int randomized_partition(int a[], int p, int r);
+void randomized_quicksort(int a[], int p, int r);
 
-//Always the last element
-int partition(int arr[], int l, int r){
-    int pivot = arr[r];
-    int i = l - 1;
-    for(int j = l; j < r; j++){
-        if(arr[j] <= pivot){
-            i++;
-            swap(&arr[i], &arr[j]);
-        }
-    }
-    swap(&arr[i+1], &arr[r]);
-    
-    return i + 1;
-}
-
-void quicksort(int arr[], int l, int r){
-    if(l < r){
-        int p = partition(arr, l, r);
-        quicksort(arr, l, p - 1);
-        quicksort(arr, p + 1, r);
-    }
-}
-
-//Always the last element
-int randomized_partition(int arr[], int l, int r){
-    int i = l + rand() % (r - l + 1);
-    swap(&arr[r], &arr[i]);
-    return partition(arr, l, r);
-}
-
-void randomized_quicksort(int arr[], int l, int r){
-    if(l < r){
-        int p = randomized_partition(arr, l, r);
-        randomized_quicksort(arr, l, p - 1);
-        randomized_quicksort(arr, p + 1, r);
-    }
-}
 
 int main(){
-    srand(time(NULL));
-    int arr[8] = {2,8,7,1,3,5,6,4};
-    int len = sizeof(arr)/sizeof(arr[0]);
-    quicksort(arr, 0, len - 1);
-    for(int i =0; i < len; i++){
-        printf("%d,", arr[i]);
+    int nums1[]= {3, 2, 44, 0, 4, 12, 6, 3, -6};
+    int len = sizeof(nums1)/ sizeof(nums1[0]);
+    quicksort(nums1, 0, len-1);
+    for(int i=0; i<len; i++){
+        printf("%d,", nums1[i]);
     }
 
     printf("\n");
-
-    int brr[8] = {2,8,7,1,3,5,6,4};
-    randomized_quicksort(brr, 0, len - 1);
-    for(int i =0; i < len; i++){
-        printf("%d,", brr[i]);
+    int nums2[]= {3, 2, 44, 0, 4, 12, 6, 3, -6};
+    srand(time(NULL));
+    randomized_quicksort(nums2, 0, len-1);
+    for(int i=0; i<len; i++){
+        printf("%d,", nums2[i]);
     }
+    return 0;
 }
 
-//Randomized?
+void quicksort(int a[], int p, int r){
+    if(p >= r){
+        return;
+    }
+    int q = partition(a, p, r);
+    quicksort(a, p, q-1);//do not include pivot
+    quicksort(a, q+1, r);
+}
+
+int partition(int a[], int p, int r){
+    int x = a[r];
+    int i = p - 1;
+    for(int j=p; j<r; j++){//we do stop at j-1=r-1'th loop even though j = r (but not do the j=r'th part)
+        if(a[j] <= x){
+            i++;
+            swap(&a[i], &a[j]);
+        }
+    }
+    swap(&a[i+1], &a[r]);
+
+    return i+1;
+}
+
+void randomized_quicksort(int a[], int p, int r){
+    if(p >= r){
+        return;
+    }
+    int q = randomized_partition(a, p, r);
+    randomized_quicksort(a, p, q-1);
+    randomized_quicksort(a, q+1, r);
+}
+
+int randomized_partition(int a[], int p, int r){
+    int i = p + rand() % (r - p + 1);
+    swap(&a[i], &a[r]);
+    return partition(a, p, r);
+}
+
+
+void swap(int* a, int* b){
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
