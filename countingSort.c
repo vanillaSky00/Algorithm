@@ -1,24 +1,13 @@
 #include<stdio.h>
 
-void countingSort(int a[], int n);
-int findMaxValue(int a[], int n);
+void counting_sort(int a[], int n);
+static int findMaxValue(int a[], int n);
 //if the given number is sparse, 3, 99, 10000, 2, then counting sort may not suit
 //In such cases, using a radix/hash map/bucket sort might be better instead of counting sort.
 
-int main(){
-    int nums1[]= {3, 2, 44, 0, 4, 12, 6, 3, 2};
-    //n=length, k=unique_number_count
-    int len = sizeof(nums1)/sizeof(nums1[0]);
-    countingSort(nums1, len);
-
-    for(int i=0; i<len; i++){
-        printf("%d,", nums1[i]);
-    }
-    return 0;
-}
 
 //int k
-void countingSort(int a[], int n){
+void counting_sort(int a[], int n){
     //get max, the size should be at lease max+1
     int k = findMaxValue(a, n);
 
@@ -44,7 +33,7 @@ void countingSort(int a[], int n){
     }
 }
 
-int findMaxValue(int a[], int n){
+static int findMaxValue(int a[], int n){
     int max = a[0];
     for(int i=1; i<n; i++){
         if(a[i] > max){
@@ -54,3 +43,14 @@ int findMaxValue(int a[], int n){
     return max;
 }
 
+// int main(){
+//     int nums1[]= {3, 2, 44, 0, 4, 12, 6, 3, 2};
+//     //n=length, k=unique_number_count
+//     int len = sizeof(nums1)/sizeof(nums1[0]);
+//     counting_sort(nums1, len);
+
+//     for(int i=0; i<len; i++){
+//         printf("%d,", nums1[i]);
+//     }
+//     return 0;
+// }

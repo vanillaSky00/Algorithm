@@ -2,15 +2,6 @@
 
 void insertion_sort(int a[], int len);
 
-int main(){
-    int nums[]= {3, 2, 44, 0, 4, 12, 6, 3, -6};
-    int len = sizeof(nums)/ sizeof(nums[0]);
-    insertion_sort(nums, len);
-    for(int i=0; i<len; i++){
-        printf("%d%s", nums[i], (i == len - 1) ? "\n" : ", ");
-    }
-}
-
 void insertion_sort(int a[], int n){
     int temp, j;
     for(int i=1; i<n; i++){
@@ -37,3 +28,12 @@ void insertion_sort(int a[], int n){
     }
 }
  */
+
+// int main(){
+//     int nums1[]= {3, 2, 44, 0, 4, 12, 6, 3, -6};
+//     int len = sizeof(nums1)/ sizeof(nums1[0]);
+//     insertion_sort(nums1, len);
+//     for(int i=0; i<len; i++){
+//         printf("%d,", nums1[i]);
+//     }
+// }

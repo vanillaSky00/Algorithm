@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<time.h>
 #include<stdlib.h>
-#include"heapSort.c"
+#include"heap_sort.c"
 void my_heap_sort(int a[], int n);
 void my_swap(int* a, int* b);
 int comp_int(const void* x1, const void* x2);
