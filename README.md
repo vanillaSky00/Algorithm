@@ -1,1 +1,1 @@
-Basic Algorithm in C
+### Basic Algorithm in C
