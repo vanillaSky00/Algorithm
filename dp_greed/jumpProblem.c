@@ -80,6 +80,8 @@ int main(void){
     bool result_1 = canJump_1Ddp(input, LEN);
     bool result_2 = canJump_2Ddp(input, LEN);
 
+
+    printf("Result:{greedy:%d,1Ddp:%d,2Ddp:%d}\n",result_g, result_1, result_2);
     printf("Result:{greedy:%d,1Ddp:%d,2Ddp:%d}\n",result_g, result_1, result_2);
 
     return 0;
